@@ -24,6 +24,8 @@ export default class Books extends Component {
     // test push
 
 
+    // det er test nr. 2
+
     componentWillMount(){
         getAllUsers("/user")
             .then((response, fail) => {

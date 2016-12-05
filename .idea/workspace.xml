@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e80dfb6-2017-4b06-9d69-336365bac969" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/Klient.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Klient.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -374,7 +372,7 @@
       <workItem from="1480679407724" duration="318000" />
       <workItem from="1480679926442" duration="3000" />
       <workItem from="1480679934379" duration="14757000" />
-      <workItem from="1480950261721" duration="1294000" />
+      <workItem from="1480950261721" duration="1340000" />
     </task>
     <task id="LOCAL-00001" summary="push">
       <created>1479992800306</created>
@@ -390,11 +388,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480953381414</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="test push">
+      <created>1480953754163</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1480953754163</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44350000" />
+    <option name="totallyTimeSpent" value="44396000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="12" y="25" width="1413" height="828" extended-state="0" />

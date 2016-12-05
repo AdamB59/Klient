@@ -15,5 +15,6 @@ ReactDOM.render(
         <Route path="books" component={Books}/>
         <Route path="users" component={Users}/>
         <Route path="curriculum" component={Curriculum}/>
-        <Route path="myCurriculum" component={MyCurriculum}/>
+            <Route path="myCurriculum" component={MyCurriculum}/>
     </Router>, document.getElementById('root'));
+

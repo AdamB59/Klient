@@ -16,21 +16,21 @@ export default class Sidenav extends Component {
         const btnStyle= {
             backgroundColor: "#333",
             color: "#fff",
-            padding: "30px",
+            padding: "40px",
             border: "2px solid white",
             display: "inline-block"
         }
 
         return (
             <div style={{
-
+            // Her styles knapperne (som kan ses øverst på skærmen) og ordene inde i dem, eksempelvis har jeg ændrede bogstavernes farve til rød.
                 height: "100%",
                 backgroundColor: "#fff"}}>
-                <ul style={{listStyle: "none", padding: "0px"}}>
-                    <li style={btnStyle}><a style={{color: "#fff"}} href="/books">Books</a></li>
-                    <li style={btnStyle}><a style={{color: "#fff"}} href="/users">Users</a></li>
-                    <li style={btnStyle}><a style={{color: "#fff"}} href="/curriculum">Semester</a></li>
-                    <li style={btnStyle}><a style={{color: "#fff"}} href="/books">Hent min pensumliste</a></li>
+                <ul style={{listStyle: "none", padding: "0px", textAlign: "center"}}>
+                    <li style={btnStyle}><a style={{color: "red"}} href="/books">Books</a></li>
+                    <li style={btnStyle}><a style={{color: "red"}} href="/users">Users</a></li>
+                    <li style={btnStyle}><a style={{color: "red"}} href="/curriculum">Semester</a></li>
+
                 </ul>
             </div>
         );

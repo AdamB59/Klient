@@ -29,15 +29,15 @@ export default class Curriculum extends Component {
         console.log("CURRICULUM:", this.state.curriculum)
 
         const thStyles = {
-            textAlign: "left",
+            textAlign: "center",
             backgroundColor: "#333",
-            color: "#fff",
+            color: "red",
             padding: "10px",
             fontSize: "20px"
         }
         const tdStyles= {
             border: "1px solid #dddddd",
-            textAlign: "left",
+            textAlign: "center",
             padding: "8px"
         }
 
@@ -46,7 +46,12 @@ export default class Curriculum extends Component {
 
                 <Sidenav/>
                 <div>
-                    <h1 style={{textAlign: "center", fontSize: "50px"}}>Semester</h1>
+                    <h1 style={{textAlign: "center", fontSize: "50px"}}>___________________________________________________________</h1>
+                    <h2 style={{textAlign: "center", fontSize: "50px", color: "red"}}>Semester</h2>
+                    <h3 style={{textAlign: "center", fontSize: "25px"}}> - This is a list showing all semesters - </h3>
+                    <h4 style={{textAlign: "center", fontSize: "25px"}}> </h4>
+                    <h5 style={{textAlign: "center", fontSize: "25px"}}> </h5>
+                    <h6 style={{textAlign: "center", fontSize: "25px"}}> </h6>
                     <table style={{width:"100%"}}>
                         <tbody>
                         <tr>
@@ -57,7 +62,8 @@ export default class Curriculum extends Component {
                         {
                             this.state.curriculum.map((curriculum) => {
                                 return (
-                                     // husk navnene skal have nøjagtig samme navn som der står i objektet
+                                     // husk at nedenstående navne skal hedde nøjagtig samme som der står i objektet.
+                                     // Man kan eksempelvis ikke ændre "school" til "university" eller lignende.
                                     <tr>
                                         <td style={tdStyles}>{curriculum.school}</td>
                                         <td style={tdStyles}>{curriculum.education}</td>

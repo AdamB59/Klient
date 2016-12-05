@@ -27,21 +27,22 @@ export default class MyCurriculum extends Component {
 
     render() {
 
-        console.log("MYCURRICULUM:", this.state.myCurriculum)
+        console.log("MYCURRICULUM:", this.state.myCurriculum);
 
-        // her styles "overskrifterne" på "Books"
+        // her styles kategorierne i "Books"
+
         const thStyles = {
             textAlign: "left",
             backgroundColor: "#333",
             color: "#fff",
             padding: "10px",
             fontSize: "20px"
-        }
+        };
         const tdStyles= {
             border: "1px solid #dddddd",
             textAlign: "left",
             padding: "8px"
-        }
+        };
         return (
             <div style={{backgroundColor: "white"}}>
 

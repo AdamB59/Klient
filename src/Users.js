@@ -10,21 +10,14 @@ export default class Books extends Component {
 
         this.state = {
             users: [],
-            username: "",
+            userName: "",
             password: "",
-            fistname: "",
-            lastname: "",
+            fistName: "",
+            lastName: "",
             email: "",
-            usertype: 0
-
+            userType: 0
         }
     }
-
-
-    // test push
-
-
-    // det er test nr. 2
 
     componentWillMount(){
         getAllUsers("/user")
@@ -38,38 +31,45 @@ export default class Books extends Component {
     }
 
     submit = (e) => {
-        const { firstname, lastname, password, username, email, usertype} = this.state;
+        const { firstName, lastName, password, userName, email, userType} = this.state;
+
         // stopper browseren i at refreshe siden.
         e.preventDefault()
-        console.log("username:", username)
+
+        console.log("firstName:", firstName)
+        console.log("lastName:", lastName)
         console.log("password:", password)
-        console.log("firstname:", firstname)
-        console.log("lastname:", lastname)
+        console.log("userName:", userName)
         console.log("email:", email)
-        console.log("usertype:", usertype)
+        console.log("userType:", userType)
 
 
         createUser("/user", {
-            First_Name: firstname,
-            Last_Name: lastname,
-            Username: username,
-            Email:email,
-            Password:password,
-            Usertype:usertype
+            //de her variabel navne skal hedde det samme som på serveren
+            firstName: firstName,
+            lastName: lastName,
+            userName: userName,
+            email: email,
+            password: password,
+            userType: userType
         }).then((response)=> {
             console.log("RES ADD USER", response)
         })
 
     }
 
-    // if (userType = 1) {
-    // userType = "Standard";
-    // } else {
-    // userType = "Admin";
-// }
+    //jeg skal på et eller andet tidspunkt benytte mig af nedenstående kode til at dekryptere
+
+    // encrypt(input) {
+    //    var key = ['A', 'B', 'C'];
+    //    var out = "";
+    //    for (var i = 0; i < input.length; i++) {
+    //        out += (String.fromCharCode(((input.charAt(i)).charCodeAt(0) ^ (key[i % key.length]).charCodeAt(0))));
+    //    }
+    //    return out;
+    // }
 
     render() {
-
         // her styles "overskrifterne" på "Users"
         const thStyles = {
             textAlign: "center",
@@ -87,15 +87,17 @@ export default class Books extends Component {
             <div>
                 <Sidenav/>
                 <form onSubmit={this.submit.bind(this)}>
-                    <div><label>Firstname</label><input required type="text" placeholder="firstname"  onChange={(e) => this.setState({firstname: e.target.value})} value={this.state.firstname}/></div>
-                    <div><label>Lastname</label><input required type="text" placeholder="lastname"  onChange={(e) => this.setState({lastname: e.target.value})} value={this.state.lastname}/></div>
+
+                    <div><label>Firstname</label><input required type="text" placeholder="firstname"  onChange={(e) => this.setState({firstName: e.target.value})} value={this.state.firstName}/></div>
+                    <div><label>Lastname</label><input required type="text" placeholder="lastname"  onChange={(e) => this.setState({lastName: e.target.value})} value={this.state.lastName}/></div>
+                    <div><label>Username</label><input required type="text" placeholder="username"  onChange={(e) => this.setState({userName: e.target.value})} value={this.state.userName}/></div>
                     <div><label>Email</label><input required type="email" placeholder="email"  onChange={(e) => this.setState({email: e.target.value})} value={this.state.email}/></div>
-                    <div><label>Username</label><input required type="text" placeholder="username"  onChange={(e) => this.setState({username: e.target.value})} value={this.state.username}/></div>
                     <div><label>password</label><input required type="password" placeholder="password" onChange={(e) => this.setState({password: e.target.value})}value={this.state.password}/></div>
+
                     <div><label>User type</label>
                         <select required value={this.state.usertype}>
-                            <option value={1}>Admin</option>
-                            <option value={0}>Regular</option>
+                            <option value={"1"}>Admin</option>
+                            <option value={"0"}>Regular</option>
                         </select>
                     </div>
                     <button type="submit">Create user</button>
@@ -125,7 +127,7 @@ export default class Books extends Component {
                                     <td style={tdStyles}>{user.userName}</td>
                                     <td style={tdStyles}>{user.email}</td>
                                     <td style={tdStyles}>{user.password}</td>
-                                    <td style={tdStyles}>{user.userType.toString()}</td>
+                                    <td style={tdStyles}>{user.userType}</td>
 
                                 </tr>
                             )

@@ -22,7 +22,7 @@ export default class App extends Component {
             this.setState({response: "An error happend"})
           }
           // Denne metode køre ved "success"
-          // Når requestet er "successful" har jeg besluttet at den skal ændre url til /books
+          // Når requestet er "successful" har jeg besluttet at den skal ændre url til /books, dermed bliver denne side vist som "default" når der logges ind.
 
           window.location.href = "/books";
           console.log("response", response.body);
@@ -68,6 +68,7 @@ export default class App extends Component {
           {this.state.response}
         </div>
 
+        // ovenstående kode er til forsiden som giver brugeren mulighed for at logge ind ved at indtaste navn og adgangskode.
     );
   }
 }

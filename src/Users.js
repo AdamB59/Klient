@@ -58,7 +58,8 @@ export default class Books extends Component {
 
     }
 
-    //jeg skal på et eller andet tidspunkt benytte mig af nedenstående kode til at dekryptere
+    // Jeg skal på et eller andet tidspunkt benytte mig af nedenstående kode til at dekryptere.
+    // Metoden er den samme som på serveren og burde virke her på klienten også.
 
     // encrypt(input) {
     //    var key = ['A', 'B', 'C'];
@@ -70,7 +71,7 @@ export default class Books extends Component {
     // }
 
     render() {
-        // her styles "overskrifterne" på "Users"
+        // her styles kategorierne på "Users"
         const thStyles = {
             textAlign: "center",
             backgroundColor: "#333",
@@ -83,6 +84,9 @@ export default class Books extends Component {
             textAlign: "center",
             padding: "8px"
         }
+
+        // Her oprettes der labels til brugeren som skal oprettes på klienten - der gives mulighed for at indtaste navn, email, username osv.
+
         return (
             <div>
                 <Sidenav/>
@@ -94,14 +98,17 @@ export default class Books extends Component {
                     <div><label>Email</label><input required type="email" placeholder="email"  onChange={(e) => this.setState({email: e.target.value})} value={this.state.email}/></div>
                     <div><label>password</label><input required type="password" placeholder="password" onChange={(e) => this.setState({password: e.target.value})}value={this.state.password}/></div>
 
+
                     <div><label>User type</label>
                         <select required value={this.state.usertype}>
                             <option value={"1"}>Admin</option>
                             <option value={"0"}>Regular</option>
                         </select>
                     </div>
+
                     <button type="submit">Create user</button>
                 </form>
+
                 <h1 style={{textAlign: "center", fontSize: "50px"}}>___________________________________________________________</h1>
                 <h2 style={{textAlign: "center", fontSize: "50px", color: "red"}}>Users</h2>
                 <h3 style={{textAlign: "center", fontSize: "25px"}}> - This is a list showing all our users - </h3>
@@ -119,6 +126,7 @@ export default class Books extends Component {
                         <th style={thStyles}>UserType</th>
                     </tr>
                     {
+                        // nendenstående variabler skal være de samme som på serveren under "model", "User"
                         this.state.users.map((user, index) => {
                             return (
                                 <tr key={index}>

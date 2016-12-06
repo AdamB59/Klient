@@ -13,6 +13,7 @@ export default class Curriculum extends Component {
         }
     }
 
+    // enten kan dette metode blive en "fail" eller en "success".
     componentWillMount(){
         getAllCurriculum("/curriculum")
             .then((response, fail) => {
@@ -41,6 +42,8 @@ export default class Curriculum extends Component {
             padding: "8px"
         }
 
+        // Nendenstående kode benyttes til at style siden "Semester", som er blot en side som viser de forskellige uddannelser vi arbejder med, og som vi har bøger til.
+
         return (
             <div style={{backgroundColor: "white"}}>
 
@@ -62,8 +65,8 @@ export default class Curriculum extends Component {
                         {
                             this.state.curriculum.map((curriculum) => {
                                 return (
-                                     // husk at nedenstående navne skal hedde nøjagtig samme som der står i objektet.
-                                     // Man kan eksempelvis ikke ændre "school" til "university" eller lignende.
+                                     // Nedenstående variabler skal hedde nøjagtigt det samme, som det der står i objektet og som det der står på serveren under "model", "curriculum".
+                                     // Man kan eksempelvis ikke ændre "school" til "university" eller lignende, de skal hedde det samme.
                                     <tr>
                                         <td style={tdStyles}>{curriculum.school}</td>
                                         <td style={tdStyles}>{curriculum.education}</td>

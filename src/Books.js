@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Sidenav from "./Sidenav";
 import { getAllBooks, getBooksByCurriculum, getCurriculumId } from "./service/api"
+import EditingBook from "./EditingBook";
 
 const studieRetninger = [
     { title: "HA(it)"},
@@ -68,7 +69,9 @@ export default class Books extends Component {
         this.state = {
             books: [],
             studieRetning: "Ha(it)",
-            semester: "1"
+            semester: "1",
+            bookInEditing: false,
+            userType: 1 //Default er Admin
         }
     }
 
@@ -84,10 +87,54 @@ export default class Books extends Component {
 
     }
 
+    submit = (e) => {
+        const { School, Education, Semester, publisher, title, author, version, ISBN, priceAB, priceSAXO, priceCDON } = this.state;
+
+        // stopper browseren i at refreshe siden.
+        e.preventDefault()
+
+        console.log("School:", school)
+        console.log("Education:", education)
+        console.log("Semester:", semester)
+
+        console.log("publisher:", publisher)
+        console.log("title:", title)
+        console.log("author:", author)
+        console.log("version:", version)
+        console.log("ISBN:", ISBN)
+        console.log("priceAB:", priceAB)
+        console.log("priceSAXO:", priceSAXO)
+        console.log("priceCDON:", priceCDON)
+
+        createBook("/book", {
+            //de her variabel navne skal hedde det samme som på serveren
+
+            School: school,
+            Education: education,
+            Semester: semester,
+
+            publisher: publisher,
+            title: title,
+            author: author,
+            version: version,
+            ISBN: ISBN,
+            priceAB: priceAB,
+            priceSAXO: priceSAXO,
+            priceCDON: priceCDON
+        }).then((response)=> {
+            console.log("RES ADD BOOK", response)
+        })
+
+    }
+
+    cancelEdit = () => {
+        this.setState({userInEditing: false})
+    }
+
     // Function til at kalde serveren når værdien i dropdownen ændres
     // denne her function kaldes hver gang du ændre værdien i en af de to dropdowns
      updateList(e, type) {
-     }
+
 
         // laver et object (egentlig bare for at gøre det lidt nemmere, kunne gøres anderledes)
         let obj = {};
@@ -175,7 +222,7 @@ export default class Books extends Component {
 
 
                     </select>
-                    <table style={{width:"100%"}}>
+                    <table style={{width:"110%"}}>
                         <tbody>
                         <tr>
                             <th style={thStyles}>Title</th>
@@ -186,12 +233,25 @@ export default class Books extends Component {
                             <th style={thStyles}>Price (CDON) </th>
                             <th style={thStyles}>Publisher</th>
                             <th style={thStyles}>Author</th>
+                            <th style={thStyles}>Save / Edit</th>
                         </tr>
                         {
                             // Ovenstående tabel giver mulighed for at ændre navn på kategorierne.
                             // De har fået samme navn som det der står i databasen.
 
                             this.state.books.map((book, index) => {
+                                if(this.state.bookInEditing === book.bookID) {
+                                    return (
+                                        <EditingBook
+                                            key={index}
+                                            cancelEdit={this.cancelEdit}
+                                            tdStyles={tdStyles}
+                                            {...book}
+                                        />
+                                    )
+                                }
+
+                            // index?
                                 return (
                                     <tr key={index}>
                                         <td style={tdStyles}>{book.title}</td>
@@ -202,6 +262,10 @@ export default class Books extends Component {
                                         <td style={tdStyles}>{book.priceCDON}</td>
                                         <td style={tdStyles}>{book.publisher}</td>
                                         <td style={tdStyles}>{book.author}</td>
+                                        <td style={tdStyles}>
+                                            <button onClick={() => {this.setState({bookInEditing:book.bookID})}}>Edit</button>
+                                            <button>Delete</button>
+                                        </td>
                                     </tr>
                                 )
                             })

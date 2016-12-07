@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Sidenav from "./Sidenav"
 import { getAllUsers, createUser } from "./service/api"
+import EditingUser from "./EditingUser";
 
 export default class Books extends Component {
 
@@ -15,7 +16,8 @@ export default class Books extends Component {
             fistName: "",
             lastName: "",
             email: "",
-            userType: 0
+            userInEditing: false,
+            userType: 0 //Default er regular
         }
     }
 
@@ -54,8 +56,22 @@ export default class Books extends Component {
             userType: userType
         }).then((response)=> {
             console.log("RES ADD USER", response)
+
         })
 
+    }
+    // skal det her også kopieres?
+    generateUserType(userType){
+        if(userType === 1){
+            return "Admin user"
+        } else if(userType === 0){
+            return "Regular user"
+        }
+        return "Unkown user type"
+    }
+
+    cancelEdit = () => {
+        this.setState({userInEditing: false})
     }
 
     // Jeg skal på et eller andet tidspunkt benytte mig af nedenstående kode til at dekryptere.
@@ -101,8 +117,8 @@ export default class Books extends Component {
 
                     <div><label>User type</label>
                         <select required value={this.state.usertype}>
-                            <option value={"1"}>Admin</option>
-                            <option value={"0"}>Regular</option>
+                            <option value={1}>Admin</option>
+                            <option value={0}>Regular</option>
                         </select>
                     </div>
 
@@ -115,7 +131,8 @@ export default class Books extends Component {
                 <h4 style={{textAlign: "center", fontSize: "25px"}}> </h4>
                 <h5 style={{textAlign: "center", fontSize: "25px"}}> </h5>
                 <h6 style={{textAlign: "center", fontSize: "25px"}}> </h6>
-                <table style={{width:"100%"}}>
+
+                <table style={{width:"110%"}}>
                     <tbody>
                     <tr>
                         <th style={thStyles}>Firstname</th>
@@ -124,10 +141,21 @@ export default class Books extends Component {
                         <th style={thStyles}>Email</th>
                         <th style={thStyles}>Password</th>
                         <th style={thStyles}>UserType</th>
+                        <th style={thStyles}>Save / Delete </th>
                     </tr>
                     {
                         // nendenstående variabler skal være de samme som på serveren under "model", "User"
                         this.state.users.map((user, index) => {
+                            if(this.state.userInEditing === user.userID) {
+                                return (
+                                    <EditingUser
+                                        key={index}
+                                        cancelEdit={this.cancelEdit}
+                                        tdStyles={tdStyles}
+                                        {...user}
+                                    />
+                                )
+                            }
                             return (
                                 <tr key={index}>
                                     <td style={tdStyles}>{user.firstName}</td>
@@ -135,8 +163,11 @@ export default class Books extends Component {
                                     <td style={tdStyles}>{user.userName}</td>
                                     <td style={tdStyles}>{user.email}</td>
                                     <td style={tdStyles}>{user.password}</td>
-                                    <td style={tdStyles}>{user.userType}</td>
-
+                                    <td style={tdStyles}>{this.generateUserType(user.userType)}</td>
+                                    <td style={tdStyles}>
+                                        <button onClick={() => {this.setState({userInEditing:user.userID})}}>Edit</button>
+                                        <button>Delete</button>
+                                    </td>
                                 </tr>
                             )
                         })

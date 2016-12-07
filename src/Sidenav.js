@@ -30,6 +30,7 @@ export default class Sidenav extends Component {
                     <li style={btnStyle}><a style={{color: "red"}} href="/books">Books</a></li>
                     <li style={btnStyle}><a style={{color: "red"}} href="/users">Users</a></li>
                     <li style={btnStyle}><a style={{color: "red"}} href="/curriculum">Semester</a></li>
+                    <li style={btnStyle}><a style={{color: "red"}} href="/">Sign out</a></li>
 
                 </ul>
             </div>

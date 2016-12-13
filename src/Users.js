@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import Sidenav from "./Sidenav"
-import { getAllUsers, createUser } from "./service/api"
+import { getAPI, postAPI } from "./service/api"
 import EditingUser from "./EditingUser";
 
 export default class Books extends Component {
@@ -11,18 +11,18 @@ export default class Books extends Component {
 
         this.state = {
             users: [],
-            userName: "",
-            password: "",
             fistName: "",
             lastName: "",
+            password: "",
+            userName: "",
             email: "",
             userInEditing: false,
-            userType: 0 //Default er regular
+            userType: 0 //Default er typen "regular" og ikke Admin
         }
     }
 
     componentWillMount(){
-        getAllUsers("/user")
+        getAPI("/user")
             .then((response, fail) => {
                 if(fail) {
                     this.setState({response: "An error happend"})
@@ -46,8 +46,8 @@ export default class Books extends Component {
         console.log("userType:", userType)
 
 
-        createUser("/user", {
-            //de her variabel navne skal hedde det samme som på serveren
+        postAPI("/user", {
+            // Disse variabel navne skal hedde det samme som over på serveren, fx. man kan ikke skrive "E-mail" istedet for "email".
             firstName: firstName,
             lastName: lastName,
             userName: userName,
@@ -60,7 +60,7 @@ export default class Books extends Component {
         })
 
     }
-    // skal det her også kopieres?
+    // her bliver der genereret hvilken type bruger, som der skal oprettes (admin eller regular)
     generateUserType(userType){
         if(userType === 1){
             return "Admin user"
@@ -101,8 +101,7 @@ export default class Books extends Component {
             padding: "8px"
         }
 
-        // Her oprettes der labels til brugeren som skal oprettes på klienten - der gives mulighed for at indtaste navn, email, username osv.
-
+        // Her oprettes der labels til brugeren når der skal oprettes en ny bruger - disse labels giver mulighed for at indtaste navn, email osv.
         return (
             <div>
                 <Sidenav/>
@@ -125,7 +124,7 @@ export default class Books extends Component {
                     <button type="submit">Create user</button>
                 </form>
 
-                <h1 style={{textAlign: "center", fontSize: "50px"}}>___________________________________________________________</h1>
+                <h1 style={{textAlign: "center", fontSize: "50px"}}>______________________________________________________________</h1>
                 <h2 style={{textAlign: "center", fontSize: "50px", color: "red"}}>Users</h2>
                 <h3 style={{textAlign: "center", fontSize: "25px"}}> - This is a list showing all our users - </h3>
                 <h4 style={{textAlign: "center", fontSize: "25px"}}> </h4>
@@ -144,7 +143,6 @@ export default class Books extends Component {
                         <th style={thStyles}>Save / Delete </th>
                     </tr>
                     {
-                        // nendenstående variabler skal være de samme som på serveren under "model", "User"
                         this.state.users.map((user, index) => {
                             if(this.state.userInEditing === user.userID) {
                                 return (
@@ -156,6 +154,7 @@ export default class Books extends Component {
                                     />
                                 )
                             }
+                            // nedenstående variabler skal være de samme som på serveren i "User"
                             return (
                                 <tr key={index}>
                                     <td style={tdStyles}>{user.firstName}</td>

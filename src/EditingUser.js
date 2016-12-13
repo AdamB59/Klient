@@ -9,7 +9,7 @@ export default class EditingUser extends React.Component {
         super(props);
 
         this.state ={
-            firstName: props.firstName || "", // "the initial value" :-)
+            firstName: props.firstName || "",
             lastName: props.lastName ||"",
             userName: props.userName ||"",
             email: props.email ||"",

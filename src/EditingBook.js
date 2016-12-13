@@ -3,13 +3,16 @@
  */
 
 import React from "react";
+import { putAPI } from "./service/api"
+
 
 export default class EditingBook extends React.Component {
     constructor(props){
-        super(props);
+            super(props);
 
         this.state ={
-            publisher: props.publisher || "", // "the initial value" :-)
+            bookID: props.bookID ||"",
+            publisher: props.publisher || "",
             title: props.title ||"",
             author: props.author ||"",
             version: props.version ||"",
@@ -22,9 +25,10 @@ export default class EditingBook extends React.Component {
 
     componentWillReceiveProps(nextProps){
 
-        // Denne function er bare en sikkerhed for at hvis der senere bruges asyncrone kald ift. data at det stadig vil virke korrekt :-)
+        // Denne function er bare en sikkerhed for at hvis der senere bruges asyncrone kald ift. data at det stadig vil virke korrekt
         console.log("PROPS:", nextProps)
         this.setState({
+            bookID: nextProps.bookID ||"",
             publisher: nextProps.publisher,
             title: nextProps.title,
             author: nextProps.author,
@@ -37,20 +41,13 @@ export default class EditingBook extends React.Component {
     }
 
     render(){
+        const { bookID, publisher, title, author, version, ISBN, priceAB, priceSAXO, priceCDON } = this.state;
         console.log("This.props:", this.props)
         return (
             <tr>
                 <td style={this.props.tdStyles}>
-                    <input value={this.state.publisher}
-                           onChange={(e) => {this.setState({publisher: e.target.value})}} />
-                </td>
-                <td style={this.props.tdStyles}>
                     <input value={this.state.title}
                            onChange={(e) => {this.setState({title: e.target.value})}} />
-                </td>
-                <td style={this.props.tdStyles}>
-                    <input value={this.state.author}
-                           onChange={(e) => {this.setState({author: e.target.value})}} />
                 </td>
                 <td style={this.props.tdStyles}>
                     <input value={this.state.version}
@@ -73,7 +70,31 @@ export default class EditingBook extends React.Component {
                            onChange={(e) => {this.setState({priceCDON: e.target.value})}} />
                 </td>
                 <td style={this.props.tdStyles}>
-                    <button onClick={() => {console.log("SAVE FUNC GOES HERE LATER")}}>Save</button>
+                    <input value={this.state.publisher}
+                           onChange={(e) => {this.setState({publisher: e.target.value})}} />
+                </td>
+
+                <td style={this.props.tdStyles}>
+                    <input value={this.state.author}
+                           onChange={(e) => {this.setState({author: e.target.value})}} />
+                </td>
+
+                <td style={this.props.tdStyles}>
+                    <button onClick={() => {
+                        putAPI("/book/"+bookID, {
+                            publisher,
+                            title,
+                            author,
+                            version,
+                            ISBN,
+                            priceAB,
+                            priceSAXO,
+                            priceCDON}).then((response) => {
+                            console.log("SUCCESS BOK SAVED");
+                            this.props.updateBook(this.state)
+                            this.props.cancelEdit()
+                        })
+                    }}>Save</button>
                     <button onClick={() => this.props.cancelEdit()}>Cancel</button>
                 </td>
             </tr>

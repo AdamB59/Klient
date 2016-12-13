@@ -3,55 +3,34 @@ import request from "superagent";
 const ROOT_URL = "http://localhost:8080/server2_0_war_exploded";
 
 // kontakter serveren og returnere dens svar, som er enten noget data eller en fejl.
-export function getToken(url, data){
+// håndtere alle POST kald til API'et på serveren
+export function postAPI(url, data){
   return request
       .post(ROOT_URL+url)
+      .set('Accept', 'application/json')
       .send(data)
 
 }
-export function getAllBooks(url){
-  return request
-      .get(ROOT_URL+url)
-      .set('Accept', 'application/json')
 
-
-}
-export function getCurriculumId(url){
-  return request
-      .get(ROOT_URL+url)
-      .set('Accept', 'application/json')
-}
-export function getAllUsers(url){
+// håndtere alle GET kald til API'et på serveren
+export function getAPI(url){
   return request
       .get(ROOT_URL+url)
       .set('Accept', 'application/json')
       .set('authorization', '7&%ovbznaq3adbxf%nhobrrc5')
 
 }
-export function getAllCurriculum(url){
+// håndtere alle PUT / edit kald til API'et på serveren
+export function putAPI(url, data){
   return request
-      .get(ROOT_URL+url)
+      .put(ROOT_URL+url)
       .set('Accept', 'application/json')
+      .send(data)
 
 }
-export function getAllMyCurriculum(url){
+// håndtere alle DELETE kald til API'et på serveren
+export function deleteAPI(url){
   return request
-      .get(ROOT_URL+url)
+      .delete(ROOT_URL+url)
       .set('Accept', 'application/json')
-
-}
-
-// DUMMY: skal ændres når endpointet er klar
-export function getBooksByCurriculum(url){
-  return request
-      .get(ROOT_URL+url)
-      .set('Accept', 'application/json')
-
-}
-export function createUser(url, data){
-return request
-    .post(ROOT_URL+url)
-    .set('Accept', 'application/json')
-    .send(data)
-
 }

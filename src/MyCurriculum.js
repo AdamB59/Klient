@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import Sidenav from "./Sidenav";
-import { getAllMyCurriculum } from "./service/api"
+import { getAPI } from "./service/api"
 
 export default class MyCurriculum extends Component {
 
@@ -14,7 +14,7 @@ export default class MyCurriculum extends Component {
     }
 
     componentWillMount(){
-        getAllMyCurriculum("/myCurriculum")
+        getAPI("/myCurriculum")
             .then((response, fail) => {
                 if(fail) {
                     this.setState({response: "An error happend"})
@@ -29,8 +29,7 @@ export default class MyCurriculum extends Component {
 
         console.log("MYCURRICULUM:", this.state.myCurriculum);
 
-        // her styles kategorierne i "Books"
-
+        // her styles "kategorierne" i "Books"
         const thStyles = {
             textAlign: "left",
             backgroundColor: "#333",

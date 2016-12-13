@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getToken } from "./service/api"
+import { postAPI } from "./service/api"
 
 
 export default class App extends Component {
@@ -16,17 +16,19 @@ export default class App extends Component {
   _submit(e){
 
     e.preventDefault();
-    getToken("/user/login", {username : this.state.username, password : this.state.password})
+    postAPI("/user/login", {username : this.state.username, password : this.state.password})
         .then((response, fail) => {
           if(fail) {
             this.setState({response: "An error happend"})
           }
           // Denne metode køre ved "success"
-          // Når requestet er "successful" har jeg besluttet at den skal ændre url til /books, dermed bliver denne side vist som "default" når der logges ind.
-
-          window.location.href = "/books";
           console.log("response", response.body);
-          this.setState({response: response.body})
+          this.setState({response: response.body});
+
+            // Gemmer token fra serveren i localStorage
+            localStorage.setItem("token", response.body);
+            // redirect til books siden som "default"
+            window.location.href = "/books";
         })
 
   }
@@ -65,10 +67,9 @@ export default class App extends Component {
               </div>
             </div>
           </form>
-          {this.state.response}
-        </div>
 
-        // ovenstående kode er til forsiden som giver brugeren mulighed for at logge ind ved at indtaste navn og adgangskode.
+        </div>
+        // ovenstående kode er til forsiden, som giver brugeren mulighed for at logge ind vha. et brugernavn og adgangskode.
     );
   }
 }

@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react';
 import Sidenav from "./Sidenav";
-import { getAllBooks, getBooksByCurriculum, getCurriculumId } from "./service/api"
+import { getAPI, deleteAPI } from "./service/api"
 import EditingBook from "./EditingBook";
 
+// dette er vores "konstanter", som er de uddannelser som man kan vælge mellem.
 const studieRetninger = [
     { title: "HA(it)"},
     { title: "HA(mat)"},
@@ -16,6 +17,8 @@ const studieRetninger = [
     { title: "HA(fil)"},
     { title: "Cand.merc.fil."}
 ]
+
+// dette er vores "konstanter", som er de semestre som er forbundet til ét af ovenstående uddannelser, som brugeren kan vælge.
 const semestre = [
     { title: "1"},
     { title: "3"},
@@ -70,13 +73,14 @@ export default class Books extends Component {
             books: [],
             studieRetning: "Ha(it)",
             semester: "1",
-            bookInEditing: false,
-            userType: 1 //Default er Admin
+            bookInEditing: false, // "bookInEditing" kan enten være false eller være = "bookID" - den bliver aldrig true.
+            userType: 1 //Default er "userType" Admin
         }
     }
-
+    // ComponentWillMount = en metode der i React kaldes "LifeCycle method" og er normalt der hvor man kalder "GET" for at loade data ind.
+    // "getAPI" er bare en metode til at kalde et GET-request til serveren, og i dette tilfælde ville det være GET "http://localhost:8080/server2_0_war_exploded/book"
     componentWillMount(){
-         getAllBooks("/book")
+         getAPI("/book")
              .then((response, fail) => {
                  if(fail) {
                      this.setState({response: "An error happend"})
@@ -107,8 +111,8 @@ export default class Books extends Component {
         console.log("priceCDON:", priceCDON)
 
         createBook("/book", {
-            //de her variabel navne skal hedde det samme som på serveren
 
+            //de her variabel navne skal hedde det samme som på serveren, man kan ikke kalde disse for noget andet. Eksempelvis "The Titel" istedet for "title".
             School: school,
             Education: education,
             Semester: semester,
@@ -124,45 +128,55 @@ export default class Books extends Component {
         }).then((response)=> {
             console.log("RES ADD BOOK", response)
         })
-
+        // then((response)=> {}), tager en paramter som kaldes en "callback function" og i den returnere den en variabel "response" som er serverens svar på et API kald.
+        // I dette tilfælde ville serveren "svare" på om det lykkedes at tilføje det man sendte (en bog) til serveren eller ej.
     }
 
     cancelEdit = () => {
-        this.setState({userInEditing: false})
+        console.log("should cancel edit")
+        this.setState({bookInEditing: false})
     }
 
-    // Function til at kalde serveren når værdien i dropdownen ændres
-    // denne her function kaldes hver gang du ændre værdien i en af de to dropdowns
+    // "updateList" er funktionen til at kalde serveren når værdien (uddannelse, semester) i dropdownen ændres.
+    // Functionen kaldes hver gang du ændre værdien i én af de to dropdowns.
      updateList(e, type) {
 
-
-        // laver et object (egentlig bare for at gøre det lidt nemmere, kunne gøres anderledes)
+        // "let obj" laver bare et objekt
         let obj = {};
 
-        // sætter objects key'en = værdien i dropdown du lige valgte så fx
-        // {studieRetning: "Ha(jur)"} sådan ville objectet se ud hvis du skiftede
-        // studieRetnings dropdownen og valgte "HA(jur)"
+        // Sætter objekts key'en = værdien i dropdown som man vælger
+        // {studieRetning: "Ha(jur)"} sådan ville objektet se ud hvis man fx. skiftede til HA jur.
          obj[type] = e.target.value;
-        // Her ændres state
-        // fra e.g.
+
+         // Her ændres "state"
+        // fra fx.
         // studieRetning: "Ha(it)",
         // semester: "1"
         // til
         // studieRetning: "Ha(jur)",
         // semester: "1"
-
          this.setState(obj, () => {
-            // dernæst API call til serveren og med samme eksempel ville se således ud:
+
+             // Dernæst laves et "API kald" til serveren og med samme eksempel ville se således ud:
             // /curriculum/"HA(jur)"&1
-             getBooksByCurriculum(`/curriculum/"${this.state.studieRetning}"&${this.state.semester}`).then((response)=> {
-                // inde i denne function venter vi på at serveren svarer og derefter
+             getAPI(`/curriculum/"${this.state.studieRetning}"&${this.state.semester}`).then((response)=> {
+
+                 // inde i denne funktion venter vi på at serveren svarer og derefter
                 // mutere vores array af bøger til det nye array af bøger vi får fra serveren
                 // ved dette kald (url)
                  this.setState({books: response.body})
              })
          })
+    }
 
-
+    updateBook = (updatedBook) => {
+        let newBookList = this.state.books.map((book) => {
+           return book.bookID === updatedBook.bookID ?
+                 updatedBook
+               :
+               book
+        })
+        this.setState({books: newBookList})
     }
 
     render() {
@@ -176,7 +190,6 @@ export default class Books extends Component {
             color: "red",
             padding: "10px",
             fontSize: "20px"
-            // fontStyle: ""
 
         }
         const tdStyles= {
@@ -185,12 +198,13 @@ export default class Books extends Component {
         padding: "8px"
         // table: "tableStriped",
         }
+        // Nedenfor styles siden "Books" - meget amatør agtigt, men pt. er det ligemeget
         return (
             <div style={{backgroundColor: "white"}}>
 
                 <Sidenav/>
                 <div>
-                    <h1 style={{textAlign: "center", fontSize: "50px"}}>___________________________________________________________</h1>
+                    <h1 style={{textAlign: "center", fontSize: "50px"}}>______________________________________________________________</h1>
                     <h2 style={{textAlign: "center", fontSize: "50px", color: "red"}}>Books</h2>
                     <h3 style={{textAlign: "center", fontSize: "25px"}}> - This is a list showing every single book we have - </h3>
                     <h4 style={{textAlign: "center", fontSize: "25px"}}> - Please choose your education and semester of intrest to narrow down the list - </h4>
@@ -222,7 +236,7 @@ export default class Books extends Component {
 
 
                     </select>
-                    <table style={{width:"110%"}}>
+                    <table style={{width:"100%"}}>
                         <tbody>
                         <tr>
                             <th style={thStyles}>Title</th>
@@ -236,14 +250,23 @@ export default class Books extends Component {
                             <th style={thStyles}>Save / Edit</th>
                         </tr>
                         {
-                            // Ovenstående tabel giver mulighed for at ændre navn på kategorierne.
+                            // Ovenstående tabel giver mulighed for at ændre navn på "kategorierne" i Books.
                             // De har fået samme navn som det der står i databasen.
 
+                            // ".map" itererer over array'et af bøger, som virker lidt ligesom et "for loop"
+                            // (book) = hver bog i array'et som den looper igennem, og (index) er bogens plads i array'en
+                            // dvs. at hvis index = 9, så er det bog nummer 10
                             this.state.books.map((book, index) => {
+
+                                // check for at sætte den række du trykker på bliver sat som i "edit mode"
                                 if(this.state.bookInEditing === book.bookID) {
+
+                                    // {...book} er bare en "shortcut" for at gå ét level ind i et objekt
+                                    // Så alt "inde i" book objektet bliver sendt ind i <EditingBook /> componenten.
                                     return (
                                         <EditingBook
                                             key={index}
+                                            updateBook={this.updateBook}
                                             cancelEdit={this.cancelEdit}
                                             tdStyles={tdStyles}
                                             {...book}
@@ -251,7 +274,6 @@ export default class Books extends Component {
                                     )
                                 }
 
-                            // index?
                                 return (
                                     <tr key={index}>
                                         <td style={tdStyles}>{book.title}</td>
@@ -264,7 +286,13 @@ export default class Books extends Component {
                                         <td style={tdStyles}>{book.author}</td>
                                         <td style={tdStyles}>
                                             <button onClick={() => {this.setState({bookInEditing:book.bookID})}}>Edit</button>
-                                            <button>Delete</button>
+                                            <button onClick={() => {
+                                                deleteAPI("/book/"+book.bookID).then((response) => {
+                                                    let updatedBookList = this.state.books.filter((mapBook)=> mapBook.bookID !== book.bookID);
+                                                    this.setState({books: updatedBookList})
+                                                })
+
+                                            }}>Delete</button>
                                         </td>
                                     </tr>
                                 )

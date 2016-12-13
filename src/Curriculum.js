@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import Sidenav from "./Sidenav"
-import { getAllCurriculum } from "./service/api"
+import { getAPI } from "./service/api"
 
 export default class Curriculum extends Component {
 
@@ -13,9 +13,9 @@ export default class Curriculum extends Component {
         }
     }
 
-    // enten kan dette metode blive en "fail" eller en "success".
+    // enten kan denne metode "faile" eller være en "success".
     componentWillMount(){
-        getAllCurriculum("/curriculum")
+        getAPI("/curriculum")
             .then((response, fail) => {
                 if(fail) {
                     this.setState({response: "An error happend"})
@@ -42,14 +42,13 @@ export default class Curriculum extends Component {
             padding: "8px"
         }
 
-        // Nendenstående kode benyttes til at style siden "Semester", som er blot en side som viser de forskellige uddannelser vi arbejder med, og som vi har bøger til.
-
+        // Nendenstående kode benyttes til at style siden "Semester", som er blot en side der viser de forskellige uddannelser, som der er bøger til i databasen.
         return (
             <div style={{backgroundColor: "white"}}>
 
                 <Sidenav/>
                 <div>
-                    <h1 style={{textAlign: "center", fontSize: "50px"}}>___________________________________________________________</h1>
+                    <h1 style={{textAlign: "center", fontSize: "50px"}}>_______________________________________________________</h1>
                     <h2 style={{textAlign: "center", fontSize: "50px", color: "red"}}>Semester</h2>
                     <h3 style={{textAlign: "center", fontSize: "25px"}}> - This is a list showing all semesters - </h3>
                     <h4 style={{textAlign: "center", fontSize: "25px"}}> </h4>
@@ -65,7 +64,7 @@ export default class Curriculum extends Component {
                         {
                             this.state.curriculum.map((curriculum) => {
                                 return (
-                                     // Nedenstående variabler skal hedde nøjagtigt det samme, som det der står i objektet og som det der står på serveren under "model", "curriculum".
+                                     // Nedenstående variabler skal hedde nøjagtigt det samme, som er det der står på serveren i "curriculum".
                                      // Man kan eksempelvis ikke ændre "school" til "university" eller lignende, de skal hedde det samme.
                                     <tr>
                                         <td style={tdStyles}>{curriculum.school}</td>

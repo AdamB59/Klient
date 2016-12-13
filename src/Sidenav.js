@@ -10,7 +10,6 @@ export default class Sidenav extends Component {
     }
 
     // Denne klasse indeholder ikke meget funktionalitet, den er udelukkende beregnet til at style
-
     render() {
 
         const btnStyle= {
@@ -23,7 +22,7 @@ export default class Sidenav extends Component {
 
         return (
             <div style={{
-            // Her styles knapperne (som kan ses øverst på skærmen når man er logget ind) og ordene inde i dem, eksempelvis har jeg ændrede bogstavernes farve til rød.
+            // Her styles knapperne (som kan ses øverst på skærmen når man er logget ind) og ordene inde i dem, eksempelvis har jeg pt. ændrede bogstavernes farve til rød.
                 height: "100%",
                 backgroundColor: "#fff"}}>
                 <ul style={{listStyle: "none", padding: "0px", textAlign: "center"}}>

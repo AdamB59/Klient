@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Sidenav from "./Sidenav"
 import { getAPI } from "./service/api"
+import { encryptDecryptXOR } from "./service/Xor"
 
 export default class Curriculum extends Component {
 
@@ -20,8 +21,8 @@ export default class Curriculum extends Component {
                 if(fail) {
                     this.setState({response: "An error happend"})
                 }
-                console.log("response", response.body)
-                this.setState({curriculum: response.body})
+                console.log("response", JSON.parse(encryptDecryptXOR(response.body, localStorage.getItem("token"))))
+                this.setState({curriculum: JSON.parse(encryptDecryptXOR(response.body, localStorage.getItem("token")))})
             })
     }
 
@@ -64,7 +65,7 @@ export default class Curriculum extends Component {
                         {
                             this.state.curriculum.map((curriculum) => {
                                 return (
-                                     // Nedenstående variabler skal hedde nøjagtigt det samme, som er det der står på serveren i "curriculum".
+                                     // HUSK: Nedenstående variabler skal hedde nøjagtigt det samme som det der står på serveren i "curriculum".
                                      // Man kan eksempelvis ikke ændre "school" til "university" eller lignende, de skal hedde det samme.
                                     <tr>
                                         <td style={tdStyles}>{curriculum.school}</td>

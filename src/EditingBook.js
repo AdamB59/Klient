@@ -90,10 +90,13 @@ export default class EditingBook extends React.Component {
                             priceAB,
                             priceSAXO,
                             priceCDON}).then((response) => {
-                            console.log("SUCCESS BOK SAVED");
+                            console.log("SUCCESS BOOK SAVED");
                             this.props.updateBook(this.state)
                             this.props.cancelEdit()
+                        }).catch((err) => {
+                            alert("you don't have permission to edit this")
                         })
+                        // ovenstående sørger for at personen får en "advarsel box" der fortæller, at de ikke har lov til at ændre værdierne i bogen  fordi de er type "regular"
                     }}>Save</button>
                     <button onClick={() => this.props.cancelEdit()}>Cancel</button>
                 </td>

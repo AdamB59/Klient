@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import Sidenav from "./Sidenav";
 import { getAPI, deleteAPI } from "./service/api"
 import EditingBook from "./EditingBook";
+import { encryptDecryptXOR } from "./service/Xor"
 
-// dette er vores "konstanter", som er de uddannelser som man kan vælge mellem.
+// dette er vores "konstanter", som er de uddannelser som man kan vælge mellem i dropdown
 const studieRetninger = [
     { title: "HA(it)"},
     { title: "HA(mat)"},
@@ -18,13 +19,13 @@ const studieRetninger = [
     { title: "Cand.merc.fil."}
 ]
 
-// dette er vores "konstanter", som er de semestre som er forbundet til ét af ovenstående uddannelser, som brugeren kan vælge.
+// dette er vores "konstanter", som er de semestre som er forbundet til ét af ovenstående uddannelser, som brugeren kan vælge i dropdown.
 const semestre = [
     { title: "1"},
     { title: "3"},
     { title: "5"}
 ]
-
+// switch funktion der håndterer de forskellige uddannelser, en bruger kan vælge.
 function switchStudie(x) {
     console.log("X: " + x)
     switch (x) {
@@ -85,8 +86,9 @@ export default class Books extends Component {
                  if(fail) {
                      this.setState({response: "An error happend"})
                  }
-                 console.log("response", response.body);
-                 this.setState({books: response.body})
+                 console.log(encryptDecryptXOR(response.body, localStorage.getItem("token")))
+                 console.log("response", JSON.parse(encryptDecryptXOR(response.body, localStorage.getItem("token"))));
+                 this.setState({books: JSON.parse(encryptDecryptXOR(response.body, localStorage.getItem("token")))})
              })
 
     }
@@ -145,7 +147,7 @@ export default class Books extends Component {
         let obj = {};
 
         // Sætter objekts key'en = værdien i dropdown som man vælger
-        // {studieRetning: "Ha(jur)"} sådan ville objektet se ud hvis man fx. skiftede til HA jur.
+        // {studieRetning: "Ha(jur)"} - sådan ville objektet se ud hvis man fx. skiftede til HA jur.
          obj[type] = e.target.value;
 
          // Her ændres "state"
@@ -162,15 +164,17 @@ export default class Books extends Component {
              getAPI(`/curriculum/"${this.state.studieRetning}"&${this.state.semester}`).then((response)=> {
 
                  // inde i denne funktion venter vi på at serveren svarer og derefter
-                // mutere vores array af bøger til det nye array af bøger vi får fra serveren
-                // ved dette kald (url)
-                 this.setState({books: response.body})
+                // mutere vores array af bøger til det nye array af bøger som vi får fra serveren
+
+                 this.setState({books: JSON.parse(encryptDecryptXOR(response.body, localStorage.getItem("token")))})
              })
          })
     }
 
     updateBook = (updatedBook) => {
         let newBookList = this.state.books.map((book) => {
+            // forklaring på hvorfor man bruger 3 ligmed (===)
+            // http://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons
            return book.bookID === updatedBook.bookID ?
                  updatedBook
                :
@@ -181,7 +185,7 @@ export default class Books extends Component {
 
     render() {
 
-        console.log("BOOKS:", this.state.books)
+        // console.log("BOOKS:", this.state.books)
 
         // Her styles kategorierne i "Books"
         const thStyles = {
@@ -258,7 +262,7 @@ export default class Books extends Component {
                             // dvs. at hvis index = 9, så er det bog nummer 10
                             this.state.books.map((book, index) => {
 
-                                // check for at sætte den række du trykker på bliver sat som i "edit mode"
+                                // tjek for at sætte den række du trykker på bliver sat som i "edit mode"
                                 if(this.state.bookInEditing === book.bookID) {
 
                                     // {...book} er bare en "shortcut" for at gå ét level ind i et objekt
@@ -288,10 +292,13 @@ export default class Books extends Component {
                                             <button onClick={() => {this.setState({bookInEditing:book.bookID})}}>Edit</button>
                                             <button onClick={() => {
                                                 deleteAPI("/book/"+book.bookID).then((response) => {
+                                                    console.log(response)
                                                     let updatedBookList = this.state.books.filter((mapBook)=> mapBook.bookID !== book.bookID);
                                                     this.setState({books: updatedBookList})
+                                                }).catch((err)=> {
+                                                    alert("You don't have permission to do this")
+                                                    // ovenstående sørger for at personen får en "advarsel" der fortæller, at de ikke har lov til at ændre værdierne i bogen - fordi de er type "regular".
                                                 })
-
                                             }}>Delete</button>
                                         </td>
                                     </tr>

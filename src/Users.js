@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Sidenav from "./Sidenav"
 import { getAPI, postAPI } from "./service/api"
 import EditingUser from "./EditingUser";
+import { encryptDecryptXOR } from "./service/Xor"
 
 export default class Books extends Component {
 
@@ -27,8 +28,8 @@ export default class Books extends Component {
                 if(fail) {
                     this.setState({response: "An error happend"})
                 }
-                console.log("response", (response.body))
-                this.setState({users: (response.body)})
+                console.log("response", encryptDecryptXOR(response.body, localStorage.getItem("token")))
+                this.setState({users: JSON.parse(encryptDecryptXOR(response.body, localStorage.getItem("token")))})
             })
     }
 
@@ -74,9 +75,7 @@ export default class Books extends Component {
         this.setState({userInEditing: false})
     }
 
-    // Jeg skal på et eller andet tidspunkt benytte mig af nedenstående kode til at dekryptere.
-    // Metoden er den samme som på serveren og burde virke her på klienten også.
-
+    // Metoden er den samme som på serveren
     // encrypt(input) {
     //    var key = ['A', 'B', 'C'];
     //    var out = "";
@@ -131,7 +130,7 @@ export default class Books extends Component {
                 <h5 style={{textAlign: "center", fontSize: "25px"}}> </h5>
                 <h6 style={{textAlign: "center", fontSize: "25px"}}> </h6>
 
-                <table style={{width:"110%"}}>
+                <table style={{width:"100%"}}>
                     <tbody>
                     <tr>
                         <th style={thStyles}>Firstname</th>

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e80dfb6-2017-4b06-9d69-336365bac969" name="Default" comment="Det er nu lykkedes mig at få knapperne &quot;save&quot; og &quot;edit&quot; til at fungere!&#10;&#10;Både med &quot;users&quot; og &quot;books&quot;.&#10;&#10;Alle metoder i forbindelse med ovenstående er forklaret med kommentare.&#10;&#10;Var nødt til at lave følgende tilføjelse på serveren for at få dette til at virke:&#10;&#10;cres.getHeaders().add(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, PUT, DELETE, GET, OPTIONS&quot;);&#10;&#10;Disse &quot;methods&quot; eksisteret ikke før og jeg fik derfor fejl. Nu er problemet løst.">
+    <list default="true" id="2e80dfb6-2017-4b06-9d69-336365bac969" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/service/Xor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Books.js" afterPath="$PROJECT_DIR$/src/Books.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Curriculum.js" afterPath="$PROJECT_DIR$/src/Curriculum.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EditingBook.js" afterPath="$PROJECT_DIR$/src/EditingBook.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EditingUser.js" afterPath="$PROJECT_DIR$/src/EditingUser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MyCurriculum.js" afterPath="$PROJECT_DIR$/src/MyCurriculum.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Sidenav.js" afterPath="$PROJECT_DIR$/src/Sidenav.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Users.js" afterPath="$PROJECT_DIR$/src/Users.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
@@ -35,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="api.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/service/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
+            <state relative-caret-position="375">
+              <caret line="25" column="22" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -48,18 +46,18 @@
       <file leaf-file-name="Sidenav.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Sidenav.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="98" selection-start-line="11" selection-start-column="98" selection-end-line="11" selection-end-column="98" />
+            <state relative-caret-position="360">
+              <caret line="24" column="155" selection-start-line="24" selection-start-column="155" selection-end-line="24" selection-end-column="155" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Users.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Users.js">
+      <file leaf-file-name="MyCurriculum.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MyCurriculum.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="144" column="21" selection-start-line="144" selection-start-column="21" selection-end-line="144" selection-end-column="21" />
+            <state relative-caret-position="-338">
+              <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
               <folding>
                 <element signature="e#1#42#0" expanded="true" />
               </folding>
@@ -67,21 +65,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditingUser.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/EditingUser.js">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2">
-              <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
-              <folding />
+            <state relative-caret-position="180">
+              <caret line="12" column="82" selection-start-line="12" selection-start-column="82" selection-end-line="12" selection-end-column="82" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditingBook.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EditingBook.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/EditingBook.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1410">
-              <caret line="96" column="36" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
+            <state relative-caret-position="397">
+              <caret line="98" column="176" selection-start-line="98" selection-start-column="176" selection-end-line="98" selection-end-column="176" />
               <folding>
                 <element signature="e#52#78#0" expanded="true" />
               </folding>
@@ -101,25 +101,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.js">
+      <file leaf-file-name="Xor.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/service/Xor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+            <state relative-caret-position="30">
+              <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyCurriculum.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MyCurriculum.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
-              <folding>
-                <element signature="e#1#42#0" expanded="true" />
+                <element signature="n#!!doc;n#encryptDecryptXOR#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -128,8 +116,8 @@
       <file leaf-file-name="Books.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Books.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="258" column="48" selection-start-line="258" selection-start-column="48" selection-end-line="258" selection-end-column="48" />
+            <state relative-caret-position="4485">
+              <caret line="299" column="201" selection-start-line="299" selection-start-column="201" selection-end-line="299" selection-end-column="201" />
               <folding>
                 <element signature="e#1#42#0" expanded="true" />
               </folding>
@@ -140,11 +128,21 @@
       <file leaf-file-name="Curriculum.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Curriculum.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
+            <state relative-caret-position="330">
+              <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
               <folding>
                 <element signature="e#1#42#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditingUser.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/EditingUser.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -167,15 +165,17 @@
       <list>
         <option value="$PROJECT_DIR$/.babelrc" />
         <option value="$PROJECT_DIR$/src/EditingUser.js" />
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/MyCurriculum.js" />
-        <option value="$PROJECT_DIR$/src/Sidenav.js" />
-        <option value="$PROJECT_DIR$/src/EditingBook.js" />
-        <option value="$PROJECT_DIR$/src/Curriculum.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/service/api.js" />
-        <option value="$PROJECT_DIR$/src/Books.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/Sidenav.js" />
+        <option value="$PROJECT_DIR$/src/Curriculum.js" />
+        <option value="$PROJECT_DIR$/src/service/Xor.js" />
         <option value="$PROJECT_DIR$/src/Users.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/Books.js" />
+        <option value="$PROJECT_DIR$/src/EditingBook.js" />
       </list>
     </option>
   </component>
@@ -388,7 +388,7 @@
       <workItem from="1480679934379" duration="14757000" />
       <workItem from="1480950261721" duration="25374000" />
       <workItem from="1481532701841" duration="5214000" />
-      <workItem from="1481581933564" duration="6846000" />
+      <workItem from="1481581933564" duration="16160000" />
     </task>
     <task id="LOCAL-00001" summary="push">
       <created>1479992800306</created>
@@ -446,11 +446,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481102808497</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Det er nu lykkedes mig at få knapperne &quot;save&quot; og &quot;edit&quot; til at fungere!&#10;&#10;Både med &quot;users&quot; og &quot;books&quot;.&#10;&#10;Alle metoder i forbindelse med ovenstående er forklaret med kommentare.&#10;&#10;Var nødt til at lave følgende tilføjelse på serveren for at få dette til at virke:&#10;&#10;cres.getHeaders().add(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, PUT, DELETE, GET, OPTIONS&quot;);&#10;&#10;Disse &quot;methods&quot; eksisteret ikke før og jeg fik derfor fejl. Nu er problemet løst.">
+      <created>1481636129126</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1481636129126</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80490000" />
+    <option name="totallyTimeSpent" value="89804000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="5" y="23" width="1435" height="831" extended-state="0" />
@@ -522,14 +529,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/service/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -754,14 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/npm-debug.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -835,11 +826,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/api.js">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
+        <state relative-caret-position="495">
+          <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1980">
+          <caret line="132" column="40" selection-start-line="132" selection-start-column="40" selection-end-line="132" selection-end-column="40" />
+          <folding>
+            <element signature="e#1#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Sidenav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="155" selection-start-line="24" selection-start-column="155" selection-end-line="24" selection-end-column="155" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MyCurriculum.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-338">
+          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+          <folding>
+            <element signature="e#1#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="82" selection-start-line="12" selection-start-column="82" selection-end-line="12" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EditingUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EditingBook.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="98" column="176" selection-start-line="98" selection-start-column="176" selection-end-line="98" selection-end-column="176" />
+          <folding>
+            <element signature="e#52#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Curriculum.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+          <folding>
+            <element signature="e#1#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Books.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4485">
+          <caret line="299" column="201" selection-start-line="299" selection-start-column="201" selection-end-line="299" selection-end-column="201" />
+          <folding>
+            <element signature="e#1#42#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -853,79 +920,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Curriculum.js">
+    <entry file="file://$PROJECT_DIR$/src/service/Xor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
+        <state relative-caret-position="30">
+          <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
           <folding>
-            <element signature="e#1#42#0" expanded="true" />
+            <element signature="n#!!doc;n#encryptDecryptXOR#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MyCurriculum.js">
+    <entry file="file://$PROJECT_DIR$/src/service/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
-          <folding>
-            <element signature="e#1#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Sidenav.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="98" selection-start-line="11" selection-start-column="98" selection-end-line="11" selection-end-column="98" />
+        <state relative-caret-position="375">
+          <caret line="25" column="22" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="144" column="21" selection-start-line="144" selection-start-column="21" selection-end-line="144" selection-end-column="21" />
-          <folding>
-            <element signature="e#1#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Books.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="258" column="48" selection-start-line="258" selection-start-column="48" selection-end-line="258" selection-end-column="48" />
-          <folding>
-            <element signature="e#1#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EditingUser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EditingBook.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
-          <caret line="96" column="36" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
-          <folding>
-            <element signature="e#52#78#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e80dfb6-2017-4b06-9d69-336365bac969" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/service/Xor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Books.js" afterPath="$PROJECT_DIR$/src/Books.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Curriculum.js" afterPath="$PROJECT_DIR$/src/Curriculum.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EditingBook.js" afterPath="$PROJECT_DIR$/src/EditingBook.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Sidenav.js" afterPath="$PROJECT_DIR$/src/Sidenav.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Users.js" afterPath="$PROJECT_DIR$/src/Users.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/api.js" afterPath="$PROJECT_DIR$/src/service/api.js" />
     </list>
     <ignored path="Klient.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -388,7 +380,7 @@
       <workItem from="1480679934379" duration="14757000" />
       <workItem from="1480950261721" duration="25374000" />
       <workItem from="1481532701841" duration="5214000" />
-      <workItem from="1481581933564" duration="16160000" />
+      <workItem from="1481581933564" duration="16352000" />
     </task>
     <task id="LOCAL-00001" summary="push">
       <created>1479992800306</created>
@@ -453,11 +445,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481636129126</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="UserType 0 &amp; 1 - regular &amp; admin&#10;&#10;Hvis man logger ind som &quot;regular&quot; skal det ikke være muligt at ændre / slette &#10;&#10;Dog får jeg fejl pga. et problem på serveren.&#10;&#10;-----&#10;&#10;Har nu indført kryptering - alt kryptering var ellers imidlertidigt slået fra på serveren.">
+      <created>1481817866562</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1481817866562</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89804000" />
+    <option name="totallyTimeSpent" value="89996000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="5" y="23" width="1435" height="831" extended-state="0" />
@@ -522,7 +521,8 @@
     <MESSAGE value="Der er blevet skrevet kommentare i de forskellige klasser, som burde hjælpe ift. at forstå hvordan koden virker.&#10;Yderligere kommentare kommer sandsynligvis på et senere tidspunkt, når det er lykkedes mig at implementere noget mere funktionalitet." />
     <MESSAGE value="Der er blevet lavet en ekstra kolonne i Books til at &quot;save / edit &quot; ændringer som man har lavet ift. en bog. &#10;Knapperne er blevet gjort klar, men fungerer ikke helt endnu.&#10;&#10;Samme gælder for Users.&#10;Der er blevet lavet en ekstra kolonne i Users til at &quot;save / delete &quot; ændringer, som man har lavet ift. en bruger.&#10;Knapperne er blevet gjort klar men fungerer ikke helt endnu.&#10;&#10;Derudover er der blevet lave en simpel knap i &quot;sidenav&quot; således at man kan logge ud - man bliver sendt tilbage til forsiden.&#10;&#10;Sidst er der blevet skrevet lidt ektra kommentare rundt omkring." />
     <MESSAGE value="Det er nu lykkedes mig at få knapperne &quot;save&quot; og &quot;edit&quot; til at fungere!&#10;&#10;Både med &quot;users&quot; og &quot;books&quot;.&#10;&#10;Alle metoder i forbindelse med ovenstående er forklaret med kommentare.&#10;&#10;Var nødt til at lave følgende tilføjelse på serveren for at få dette til at virke:&#10;&#10;cres.getHeaders().add(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, PUT, DELETE, GET, OPTIONS&quot;);&#10;&#10;Disse &quot;methods&quot; eksisteret ikke før og jeg fik derfor fejl. Nu er problemet løst." />
-    <option name="LAST_COMMIT_MESSAGE" value="Det er nu lykkedes mig at få knapperne &quot;save&quot; og &quot;edit&quot; til at fungere!&#10;&#10;Både med &quot;users&quot; og &quot;books&quot;.&#10;&#10;Alle metoder i forbindelse med ovenstående er forklaret med kommentare.&#10;&#10;Var nødt til at lave følgende tilføjelse på serveren for at få dette til at virke:&#10;&#10;cres.getHeaders().add(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, PUT, DELETE, GET, OPTIONS&quot;);&#10;&#10;Disse &quot;methods&quot; eksisteret ikke før og jeg fik derfor fejl. Nu er problemet løst." />
+    <MESSAGE value="UserType 0 &amp; 1 - regular &amp; admin&#10;&#10;Hvis man logger ind som &quot;regular&quot; skal det ikke være muligt at ændre / slette &#10;&#10;Dog får jeg fejl pga. et problem på serveren.&#10;&#10;-----&#10;&#10;Har nu indført kryptering - alt kryptering var ellers imidlertidigt slået fra på serveren." />
+    <option name="LAST_COMMIT_MESSAGE" value="UserType 0 &amp; 1 - regular &amp; admin&#10;&#10;Hvis man logger ind som &quot;regular&quot; skal det ikke være muligt at ændre / slette &#10;&#10;Dog får jeg fejl pga. et problem på serveren.&#10;&#10;-----&#10;&#10;Har nu indført kryptering - alt kryptering var ellers imidlertidigt slået fra på serveren." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

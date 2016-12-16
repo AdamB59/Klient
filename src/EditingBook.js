@@ -5,6 +5,7 @@
 import React from "react";
 import { putAPI } from "./service/api"
 
+import {encryptDecryptXOR} from "./service/Xor";
 
 export default class EditingBook extends React.Component {
     constructor(props){
@@ -81,6 +82,18 @@ export default class EditingBook extends React.Component {
 
                 <td style={this.props.tdStyles}>
                     <button onClick={() => {
+                        console.log(encryptDecryptXOR(JSON.stringify({
+
+                            // Disse variabel navne skal hedde det samme som over på serveren, fx. man kan ikke skrive "E-mail" istedet for "email".
+                                publisher,
+                                title,
+                                author,
+                                version,
+                                ISBN,
+                                priceAB,
+                                priceSAXO,
+                                priceCDON
+                        }), localStorage.getItem("token")));
                         putAPI("/book/"+bookID, {
                             publisher,
                             title,

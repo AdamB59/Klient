@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import Sidenav from "./Sidenav"
-import { getAPI, postAPI } from "./service/api"
+import { getAPI, postAPI, deleteAPI } from "./service/api"
 import EditingUser from "./EditingUser";
 import { encryptDecryptXOR } from "./service/Xor"
 
@@ -30,7 +30,9 @@ export default class Books extends Component {
                 }
                 console.log("response", encryptDecryptXOR(response.body, localStorage.getItem("token")))
                 this.setState({users: JSON.parse(encryptDecryptXOR(response.body, localStorage.getItem("token")))})
-            })
+            }).catch((err)=> {
+            alert("only admins can view this")
+        })
     }
 
     submit = (e) => {
@@ -73,6 +75,18 @@ export default class Books extends Component {
 
     cancelEdit = () => {
         this.setState({userInEditing: false})
+    }
+
+    updateUser = (updatedUser) => {
+        let newUserList = this.state.users.map((user) => {
+            // forklaring på hvorfor man bruger 3 ligmed (===)
+            // http://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons
+            return user.userID === updatedUser.userID ?
+                updatedUser
+                :
+                user
+        })
+        this.setState({users: newUserList})
     }
 
     // Metoden er den samme som på serveren
@@ -147,6 +161,8 @@ export default class Books extends Component {
                                 return (
                                     <EditingUser
                                         key={index}
+                                        userID={user.userID}
+                                        updateUser={this.updateUser}
                                         cancelEdit={this.cancelEdit}
                                         tdStyles={tdStyles}
                                         {...user}
@@ -164,7 +180,14 @@ export default class Books extends Component {
                                     <td style={tdStyles}>{this.generateUserType(user.userType)}</td>
                                     <td style={tdStyles}>
                                         <button onClick={() => {this.setState({userInEditing:user.userID})}}>Edit</button>
-                                        <button>Delete</button>
+                                        <button onClick={() => {
+                                        deleteAPI("/user/"+user.userID).then((response) => {
+                                        console.log(response)
+                                        let updatedUserList = this.state.users.filter((mapUser)=> mapUser.userID !== user.userID);
+                                        this.setState({users: updatedUserList})
+                                    }).catch((err)=> {
+                                            alert("You don't have permission to do this")
+                                        })}}>Delete</button>
                                     </td>
                                 </tr>
                             )

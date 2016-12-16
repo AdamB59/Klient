@@ -3,6 +3,7 @@
  */
 
 import React from "react";
+import { putAPI } from "./service/api"
 
 export default class EditingUser extends React.Component {
     constructor(props){
@@ -33,7 +34,9 @@ export default class EditingUser extends React.Component {
     }
 
     render(){
-        console.log("This.props:", this.props)
+
+        const { firstName, lastName, userName, email, password, userType} = this.state;
+        console.log("Tis.props:", this.props)
         return (
             <tr>
                 <td style={this.props.tdStyles}>
@@ -63,7 +66,22 @@ export default class EditingUser extends React.Component {
                     </select>
                 </td>
                 <td style={this.props.tdStyles}>
-                    <button onClick={() => {console.log("SAVE FUNC GOES HERE LATER")}}>Save</button>
+                    <button onClick={() => {
+                        putAPI("/user/"+this.props.userID, {
+                            firstName,
+                            lastName,
+                            userName,
+                            email,
+                            password,
+                            userType,
+                        }).then((response) => {
+                            console.log("SUCCESS USER SAVED");
+                            this.props.updateUser(this.state)
+                            this.props.cancelEdit()
+                        }).catch((err) => {
+                            alert("you don't have permission to edit this")
+                        })
+                    }}>Save</button> {}
                     <button onClick={() => this.props.cancelEdit()}>Cancel</button>
                 </td>
             </tr>

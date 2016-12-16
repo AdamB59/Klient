@@ -25,7 +25,7 @@ const semestre = [
     { title: "3"},
     { title: "5"}
 ]
-// switch funktion der håndterer de forskellige uddannelser, en bruger kan vælge.
+// switch funktion der håndterer de forskellige uddannelser, en bruger kan vælge fra dropdown.
 function switchStudie(x) {
     console.log("X: " + x)
     switch (x) {
@@ -290,7 +290,7 @@ export default class Books extends Component {
                                         <td style={tdStyles}>{book.author}</td>
                                         <td style={tdStyles}>
                                             <button onClick={() => {this.setState({bookInEditing:book.bookID})}}>Edit</button>
-                                            <button onClick={() => {
+                                            <button onClick={() => { // er det bare denne linje du taler om? jep
                                                 deleteAPI("/book/"+book.bookID).then((response) => {
                                                     console.log(response)
                                                     let updatedBookList = this.state.books.filter((mapBook)=> mapBook.bookID !== book.bookID);

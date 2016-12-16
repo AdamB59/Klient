@@ -1,4 +1,5 @@
 import request from "superagent";
+import { encryptDecryptXOR} from "./Xor";
 
 const ROOT_URL = "http://localhost:8080/server2_0_war_exploded";
 
@@ -13,7 +14,6 @@ export function postAPI(url, data){
       .send(data)
 
 }
-
 // håndtere alle GET kald til API'et på serveren
 export function getAPI(url){
   return request
@@ -23,12 +23,13 @@ export function getAPI(url){
 
 }
 // håndtere alle PUT / edit kald til API'et på serveren
+//  encryptDecryptXOR(data, token)
 export function putAPI(url, data){
   return request
       .put(ROOT_URL+url)
       .set('Accept', 'application/json')
       .set("authorization", token)
-      .send(data)
+      .send(data)//encryptDecryptXOR(data, token)
 
 }
 // håndtere alle DELETE kald til API'et på serveren

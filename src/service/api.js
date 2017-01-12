@@ -21,6 +21,7 @@ export function getAPI(url){
       .set('Accept', 'application/json')
       .set("authorization", token)
 
+
 }
 // håndtere alle PUT / edit kald til API'et på serveren
 //  encryptDecryptXOR(data, token)
@@ -32,11 +33,12 @@ export function putAPI(url, data){
       .send(data)//encryptDecryptXOR(data, token)
 
 }
-// håndtere alle DELETE kald til API'et på serveren
+// håndterer alle DELETE kald til API'et på serveren
 export function deleteAPI(url){
   return request
       .delete(ROOT_URL+url)
       .set('Accept', 'application/json')
       .set("authorization", token)
+  //  .delete(data) hvorfor ville man ikke skrive dette i forbindelse med at "deleteAPI"?
 
 }

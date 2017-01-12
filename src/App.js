@@ -21,7 +21,7 @@ export default class App extends Component {
           if(fail) {
             this.setState({response: "An error happend"})
           }
-          // Denne metode køre ved "success"
+          // Denne metode kører ved "success"
           console.log("response", response.body);
           this.setState({response: response.body});
 

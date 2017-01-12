@@ -5,7 +5,7 @@ import { getAPI, deleteAPI } from "./service/api"
 import EditingBook from "./EditingBook";
 import { encryptDecryptXOR } from "./service/Xor"
 
-// dette er vores "konstanter", som er de uddannelser som man kan vælge mellem i dropdown
+// dette er vores "konstanter", som er de uddannelser man kan vælge mellem i dropdown
 const studieRetninger = [
     { title: "HA(it)"},
     { title: "HA(mat)"},
@@ -25,7 +25,7 @@ const semestre = [
     { title: "3"},
     { title: "5"}
 ]
-// switch funktion der håndterer de forskellige uddannelser, en bruger kan vælge fra dropdown.
+// switch funktion der håndterer de forskellige uddannelser, som en bruger kan vælge fra dropdown.
 function switchStudie(x) {
     console.log("X: " + x)
     switch (x) {
@@ -86,9 +86,9 @@ export default class Books extends Component {
                  if(fail) {
                      this.setState({response: "An error happend"})
                  }
-                 console.log(encryptDecryptXOR(response.body, localStorage.getItem("token")))
+                 console.log(encryptDecryptXOR(response.body, localStorage.getItem("token")));
                  console.log("response", JSON.parse(encryptDecryptXOR(response.body, localStorage.getItem("token"))));
-                 this.setState({books: JSON.parse(encryptDecryptXOR(response.body, localStorage.getItem("token")))})
+                 this.setState({books: JSON.parse(encryptDecryptXOR(response.body, localStorage.getItem("token")))});
              })
 
     }
@@ -183,6 +183,7 @@ export default class Books extends Component {
         this.setState({books: newBookList})
     }
 
+
     render() {
 
         // console.log("BOOKS:", this.state.books)
@@ -204,6 +205,7 @@ export default class Books extends Component {
         }
         // Nedenfor styles siden "Books" - meget amatør agtigt, men pt. er det ligemeget
         return (
+            // <a href="https://www.saxo.com/dk/" target="_blank" style={{textAlign: "center", fontSize: "50px", color: "black"}}>saxo.com</a>
             <div style={{backgroundColor: "white"}}>
 
                 <Sidenav/>
@@ -215,7 +217,6 @@ export default class Books extends Component {
                     <h5 style={{textAlign: "center", fontSize: "25px"}}> </h5>
                     <h6 style={{textAlign: "center", fontSize: "25px"}}> </h6>
                     <h7 style={{textAlign: "center", fontSize: "25px"}}> </h7>
-
 
                     {/* DROPDOWN til at vælge studieRetning */}
                     <select
@@ -283,14 +284,14 @@ export default class Books extends Component {
                                         <td style={tdStyles}>{book.title}</td>
                                         <td style={tdStyles}>{book.version}</td>
                                         <td style={tdStyles}>{book.ISBN}</td>
-                                        <td style={tdStyles}>{book.priceAB}</td>
-                                        <td style={tdStyles}>{book.priceSAXO}</td>
-                                        <td style={tdStyles}>{book.priceCDON}</td>
+                                        <td style={tdStyles}><a href="http://www.academicbooks.dk/search/apachesolr_search" target="_blank">{book.priceAB}</a></td>
+                                        <td style={tdStyles}><a href="https://www.saxo.com/dk/boeger/danske-boeger/studieboeger" target="_blank">{book.priceSAXO}</a></td>
+                                        <td style={tdStyles}><a href="http://cdon.dk/b%C3%B8ger/studielitteratur/" target="_blank">{book.priceCDON}</a></td>
                                         <td style={tdStyles}>{book.publisher}</td>
                                         <td style={tdStyles}>{book.author}</td>
                                         <td style={tdStyles}>
                                             <button onClick={() => {this.setState({bookInEditing:book.bookID})}}>Edit</button>
-                                            <button onClick={() => { // er det bare denne linje du taler om? jep
+                                            <button onClick={() => {
                                                 deleteAPI("/book/"+book.bookID).then((response) => {
                                                     console.log(response)
                                                     let updatedBookList = this.state.books.filter((mapBook)=> mapBook.bookID !== book.bookID);

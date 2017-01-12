@@ -5,7 +5,7 @@
 // denne klasse står for XOR kryptering
 export function encryptDecryptXOR (input, token) {
 
-    // split fx.  string = "dreng"    "dremg".split("") = ["d","r","e","n","g"]
+    // split fx.  string = "dreng"    "dreng".split("") = ["d","r","e","n","g"]
     var key = token.split("");
     var output = [];
     for (var i = 0; i < input.length; i++) {

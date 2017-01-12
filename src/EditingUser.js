@@ -10,6 +10,7 @@ export default class EditingUser extends React.Component {
         super(props);
 
         this.state ={
+            userID: props.userID || null,
             firstName: props.firstName || "",
             lastName: props.lastName ||"",
             userName: props.userName ||"",
@@ -24,6 +25,7 @@ export default class EditingUser extends React.Component {
         // Denne function er bare en sikkerhed for at hvis der senere bruges asyncrone kald ift. data at det stadig vil virke korrekt :-)
         console.log("PROPS:", nextProps)
         this.setState({
+            userID: nextProps.userID,
             firstName: nextProps.firstName,
             lastName: nextProps.lastName,
             userName: nextProps.userName,
@@ -35,7 +37,7 @@ export default class EditingUser extends React.Component {
 
     render(){
 
-        const { firstName, lastName, userName, email, password, userType} = this.state;
+        const { userID, firstName, lastName, userName, email, password, userType} = this.state;
         console.log("Tis.props:", this.props)
         return (
             <tr>

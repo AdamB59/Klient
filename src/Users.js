@@ -29,6 +29,7 @@ export default class Books extends Component {
                     this.setState({response: "An error happend"})
                 }
                 console.log("response", encryptDecryptXOR(response.body, localStorage.getItem("token")))
+                // console.log("response", JSON.parse(encryptDecryptXOR(response.body, localStorage.getItem("token"))));
                 this.setState({users: JSON.parse(encryptDecryptXOR(response.body, localStorage.getItem("token")))})
             }).catch((err)=> {
             alert("only admins can view this")
@@ -59,7 +60,6 @@ export default class Books extends Component {
             userType: userType
         }).then((response)=> {
             console.log("RES ADD USER", response)
-
         })
 
     }
@@ -74,11 +74,16 @@ export default class Books extends Component {
     }
 
     cancelEdit = () => {
+        console.log("should cancel edit")
         this.setState({userInEditing: false})
     }
 
     updateUser = (updatedUser) => {
+        console.log("updateUser", updatedUser)
         let newUserList = this.state.users.map((user) => {
+            console.log("updateUser", updatedUser)
+            console.log("user", user)
+
             // forklaring på hvorfor man bruger 3 ligmed (===)
             // http://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons
             return user.userID === updatedUser.userID ?

@@ -84,7 +84,6 @@ export default class EditingBook extends React.Component {
                     <button onClick={() => {
                         console.log(encryptDecryptXOR(JSON.stringify({
 
-                            // Disse variabel navne skal hedde det samme som over på serveren, fx. man kan ikke skrive "E-mail" istedet for "email".
                                 publisher,
                                 title,
                                 author,
@@ -109,7 +108,7 @@ export default class EditingBook extends React.Component {
                         }).catch((err) => {
                             alert("you don't have permission to edit this")
                         })
-                        // ovenstående sørger for at personen får en "advarsel box" der fortæller, at de ikke har lov til at ændre værdierne i bogen  fordi de er type "regular"
+                        // ovenstående sørger for at personen får en "advarsel box" der fortæller, at de ikke har lov til at ændre værdierne i bogen fordi de "regular"
                     }}>Save</button>
                     <button onClick={() => this.props.cancelEdit()}>Cancel</button>
                 </td>
